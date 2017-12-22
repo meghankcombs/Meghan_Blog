@@ -1,0 +1,75 @@
+﻿@using Meghan_Blog.Models
+@using Meghan_Blog.ViewModels
+@model LoginViewModel
+
+<!-- Content Sections -->
+<div id="content">
+    <div class="e-divider-2"></div>
+
+    <!-- Login Header -->
+    <section id="articles" class="text-center">
+        <div class="container">
+            <div class="row">
+                <article id="01" class="page-block col-md-12 page hentry">
+                    <div class="page-detail text-center">
+                        <h2 class="entry-title page-title">Login Here</h2>
+                    </div>
+                    <div class="text-center"><div class="ornament-divider-fullwidth"><i class="flaticon-art-3"></i></div></div>
+                    <div class="e-divider-2"></div>
+                    <div class="inner-content"></div>
+                </article>
+            </div>
+        </div>
+    </section>
+    <!-- /Login Header -->
+
+    <!-- Login -->
+    <section @*id="feedback-block"*@ class="e-block-null text-center">
+        <div class="container padding-side-60">
+
+            <div class="row">
+                <div class="col-md-12 e-centered text-center">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="e-divider-2"></div>
+                        @*<div id="form-messages"></div>*@
+
+                        <div class="field">
+                            <!--<label for="name">Email:</label>-->
+                            <input type="email" name="Email" placeholder="Email" required>
+                        </div>
+                        <div class="e-divider-1"></div>
+                        <div class="field">
+                            <!--<label for="name">Password:</label>-->
+                            <input type="password" name="Password" placeholder="Password" required>
+                        </div>
+                        <div class="e-divider-1"></div>
+                        <div class="e-divider-2"></div>
+                        <div class="field text-center">
+                            <button type="submit" class="btn btn-lg btn-blk">Login</button>
+                        </div>
+                        <div class="e-divider-2"></div>
+
+                    }
+                    <div class="field text-center">
+                        <section id="socialLoginForm">
+                            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                        </section>
+                    </div>
+                </div><!-- end col-md-12 -->
+            </div> <!-- end row -->
+
+        </div>
+        <div class="e-divider-4"></div>
+    </section>
+    <!-- /Login -->
+
+    <div class="text-center"><div class="ornament-divider-fullwidth"><i class="flaticon-art-3"></i></div></div>
+    <div class="e-divider-4">
+    </div>
+
+</div>
+
+<!-- /Content Sections -->

@@ -1,0 +1,96 @@
+﻿.picfix {
+    overflow: hidden;
+    height: 210px;
+}
+
+.checkboxmargin {
+    margin-left: 20px;
+}
+
+.inputmargin {
+    margin-left: -15px;
+}
+
+.inputborder {
+    border: 2px solid #e5e5e5;
+}
+
+.publishfix {
+    font-family: 'Montserrat';
+    text-transform: none;
+    font-size: 14px;
+}
+
+.recpostheight {
+    height: 50px;
+}
+
+.owlheight {
+    height: 400px;
+}
+
+.picuploadfix {
+    font-family: 'Montserrat';
+    font-size: 14px;
+}
+
+.btncolor {
+    background-color: #ea526f;
+    border-color: #ea526f;
+    height: 35px;
+    width: 40px;
+}
+
+.btn-btncolor {
+    font-family: "Montserrat", sans-serif;
+    font-style: oblique !important;
+    color: #fff !important;
+    background-color: #e8566d;
+    border-color: #e8566d;
+    letter-spacing: 1px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 2px;
+    text-transform: uppercase;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+    -ms-transition: all 0.35s ease-in-out;
+}
+
+    .btn-btncolor:hover {
+        border: 1px solid #4a4a4a;
+        background: #4a4a4a;
+        color: #fff !important;
+    }
+
+.mylogout {
+    cursor: pointer;
+    padding: 16px 24px;
+    clear: both;
+    font-weight: 300;
+    font-family: "Cinzel", serif;
+    line-height: 1.42857143;
+    color: #303030;
+    display: block;
+    white-space: nowrap;
+    text-decoration: none;
+    -webkit-transition: all 0.35s ease-in-out;
+    background-color: transparent;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+}
+
+.editbody textarea {
+    height: 100px;
+}
+
+.bgeditbody textarea {
+    height: 250px;
+}
+
+
+
+

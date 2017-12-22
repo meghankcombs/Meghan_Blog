@@ -1,0 +1,89 @@
+﻿@model Meghan_Blog.Models.BlogPost
+
+    <!-- Content Sections -->
+    <div id="content">
+        <div class="e-divider-2"></div>
+        <!-- Page Content -->
+        <section id="articles" class="">
+            <div class="container">
+                <div class="row">
+                    <article id="01" class="page-block col-md-12 page hentry">
+                        <div class="e-divider-2"></div>
+                        <div class="page-detail text-center">
+                            <h2 class="entry-title page-title">Create Blog Post</h2>
+                        </div>
+                        <div class="text-center"><div class="ornament-divider-fullwidth"><i class="flaticon-art-3"></i></div></div>
+                        <div class="e-divider-4"></div>
+                        <div class="inner-content"></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <!-- /Page Content -->
+
+        <!-- Blog Post -->
+        <section id="feedback-block" class="e-block-null text-center">
+            <div class="container padding-side-60">
+                <div class="row">
+                    <div class="col-md-12 e-centered">
+                        <div class="e-divider-2"></div>
+                        <div id="form-messages"></div>
+
+                        @using (Html.BeginForm("Create", "BlogPosts", FormMethod.Post, new { id = "ajax-contact", @class = "wpcf7-form", enctype = "Multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="field text-left">
+                                <label for="file" class="btn btn-btncolor btn-sm btn-file">
+                                    Upload Photo<input id="file" type="file" name="file" style="display: none;">
+                                </label>
+                            </div>
+                            <div class="e-divider-1"></div>
+                            <div class="field">
+                                <input type="text" name="Title" placeholder="Blog Title" required>
+                            </div>
+                            <div class="e-divider-1"></div>
+                            <div class="field">
+                                <textarea name="Abstract" placeholder="Abstract" rows="3" cols="30" required></textarea>
+                            </div>
+                            <div class="e-divider-1"></div>
+                            <div class="field">
+                                <textarea name="Body" id="Body" placeholder="Write post" rows="15" cols="30" required></textarea>
+                            </div>
+                            <div class="e-divider-1"></div>
+                            <div class="e-divider-2"></div>
+                            <div class="field text-left">
+                                <label for="Published" class="publishfix">Publish? Check box below.</label>
+                                <div class="checkbox text-left checkboxmargin">
+                                    @Html.EditorFor(model => model.Published)
+                                </div>
+                            </div>
+                            <div class="e-divider-1"></div>
+                            <div class="e-divider-3"></div>
+                            <div class="field text-left">
+                                <button type="submit" class="btn btn-lg btn-blk">Create</button>
+                            </div>
+                        }
+                      
+                    </div>
+                </div>
+            </div>
+            <div class="e-divider-6"></div>
+        </section>
+        <!-- /Blog Post -->
+
+        <div class="e-divider-10"></div>
+
+    </div>
+    <!-- /content -->
+
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            tinymce.init({
+                selector: "#Body"
+            });
+        });
+    </script>
+}

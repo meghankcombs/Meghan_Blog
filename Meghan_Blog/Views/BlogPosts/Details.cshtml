@@ -1,0 +1,185 @@
+﻿@using Meghan_Blog.Models;
+@using Meghan_Blog.ViewModels
+@using Microsoft.AspNet.Identity;
+@using Meghan_Blog.Helpers;
+@model CustomPostDetail
+
+
+<div id="wrapper" class="">
+
+    <!-- Content -->
+    <div id="page-content-wrapper" class="content-wrap">
+        @{ var db = new ApplicationDbContext(); }
+        <!-- Content Sections -->
+        <div id="content">
+            <div class="e-divider-2"></div>
+            <!-- Articles -->
+            <section id="articles" class="">
+                <div class="container">
+                    <div class="row has-sidebar-right">
+                        <!--Content Column-->
+                        <div class="col-md-8 pull-left">
+                            <div class="row row-flex row-flex-wrap">
+                                <article id="01" class="post-block col-md-12 post hentry">
+                                    <div class="post-detail">
+                                        <h2 class="entry-title">@Model.BlogPost.Title</h2>
+                                        <div class="metas">
+                                            Posted on: <a class="meta-date">@Model.BlogPost.Created.ToString("MMM dd, yyyy")</a>/&nbsp;
+                                            Written by: <a class="meta-author">@UserHelper.AuthorName()</a>/&nbsp;
+                                            <a class="meta-comment">@Model.BlogPost.Comments.Count() comments</a>
+                                        </div>
+                                    </div>
+                                    <div class="img-wrap">
+                                        <img class="img-responsive" src="@Url.Content(Model.BlogPost.MediaUrl)" alt="">
+                                    </div>
+                                    <div class="inner-content">
+                                        <p class="text-muted">@Model.BlogPost.Abstract</p>
+                                        <hr />
+                                        <p>@Html.Raw(Model.BlogPost.Body)</p>
+                                    </div>
+
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <div class="e-divider-2"></div>
+                                        <p><a href="@Url.Action("Edit", "BlogPosts", new { Id = Model.BlogPost.Id })" class="btn btn-small btn-rose-str">Edit Post</a></p>
+                                        <p><a href="@Url.Action("Delete", "BlogPosts", new { Id = Model.BlogPost.Id })" class="btn btn-small btn-rose-str">Delete Post</a></p>
+                                    }
+                                    
+
+                                    <!--Comments-->
+                                    <section id="comments" class="">
+                                        <h3 class="font-accident-two-normal e-uppercase">@Model.BlogPost.Comments.Count() comments:</h3>
+                                        <ul class="media-list">
+                                            @foreach (var comment in Model.BlogPost.Comments.OrderByDescending(c => c.Created))
+                                            {
+                                                <li class="media">
+                                                    <div class="media-left">
+                                                        <a><img class="media-object" src="@Url.Action("CommentAuthorPhoto", "Home", new { userId = comment.Author.Id })"></a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="post-data">
+                                                            <div class="post-date">@comment.Created.ToString("MMM dd, yyyy")</div>
+                                                            <div class="post-author">@comment.Author.FirstName @comment.Author.LastName</div>
+                                                        </div>
+                                                        <div class="comment">
+                                                            <p>@comment.Body</p>
+                                                        </div>
+
+                                                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                                        {
+                                                            <p><a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" class="btn btn-small btn-rose-str">Edit</a></p>
+                                                            <p><a href="@Url.Action("Delete", "Comments", new { Id = comment.Id })" class="btn btn-small btn-rose-str">Delete</a></p>
+                                                        }
+
+                                                        @if (User.Identity.IsAuthenticated && User.IsInRole("Moderator"))
+                                                        {
+                                                            <p><a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" class="btn btn-small btn-rose-str">Edit</a></p>
+                                                            <p><a href="@Url.Action("Delete", "Comments", new { Id = comment.Id })" class="btn btn-small btn-rose-str">Delete</a></p>
+                                                        }
+
+                                                        @if (!User.Identity.IsAuthenticated)
+                                                        {
+                                                            <p><a href="@Url.Action("Login", "Account")" class="btn btn-small btn-rose-str">Login to Comment</a></p>
+                                                        }
+                                                    </div>
+                                                </li>
+                                            }     
+                                        </ul>
+                                    </section>
+
+                                    <!--Post Comment-->
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                    <section @*id="post-comment"*@ class="">
+                                        <div class="e-divider-2"></div>
+                                        <h3 class="font-accident-two-normal e-uppercase">Leave a Comment</h3>
+                                        <div class="e-divider-3"></div>
+                                        
+                                            @using(Html.BeginForm("Create", "Comments", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+
+                                                @Html.Hidden("BlogPostId", Model.BlogPost.Id)
+                                                @Html.Hidden("slug", Model.BlogPost.Slug)
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <p><label>Comment</label>
+                                                        <textarea name="Body" id="Body" cols="60" rows="3" class="" aria-invalid="false"></textarea>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="e-divider-1"></div>
+                                                <p><button type="submit" class="btn btn-rose">Post Comment</button></p>
+                                            }
+                                    </section>
+                                    }
+                                </article>
+                            </div>
+                        </div>
+                        <!--/Content Column-->
+
+                        <!--Sidebar-->
+                        <div class="col-md-4 sticky-column" data-sticky_column>
+                            <div class="sidebar">
+                                <!--About Widget-->
+                                <aside id="about-widget" class="widget widget_about">
+                                    <div class="text-center widget-wrap">
+                                        <div class="e-divider-4"></div>
+                                        <img class="img-circle  author-img" src="~/MyImages/3.jpg" alt="Meghan">
+                                        <div class="e-divider-3"></div>
+                                        <h5 class="hello">Hi! I am Meghan</h5>
+                                        <p>"We must be willing to let go of the life we have planned, so as to have the life that is waiting for us." <br />- E.M. Forster</p>
+                                        <div class="e-divider-2"></div>
+                                        <ul class="list-inline social">
+                                            <li><a target="_blank" href="https://github.com/meghankcombs" class="rst-icon-facebook"><i class="fa fa-github"></i></a></li>
+                                            <li><a target="_blank" href="https://www.linkedin.com/in/meghankcombs/" class="rst-icon-twitter"><i class="fa fa-linkedin"></i></a></li>
+                                        </ul>
+                                        <div class="e-divider-2"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </aside>
+                                <!--/ About Widget-->
+
+                                <!--Resent Posts Widget-->
+                                <aside id="resent-widget" class="widget widget_recent_post">
+                                    <div class="title widget-title lined">Recent Post</div>
+                                    <div>
+                                        @foreach (var recpost in Model.RecentPosts)
+                                        {
+                                            <div class="media">
+                                                <div class="media-left"><a href="@Url.Action("Details", "BlogPosts")"><img class="media-object recpostheight" src="@Url.Content(recpost.MediaUrl)" alt="01"></a></div>
+                                                <div class="media-body">
+                                                    <span class="meta-date">@recpost.Created.ToString("MMM dd, yyyy")</span>
+                                                    <h4 class="media-heading">
+                                                        <a href="@Url.Action("Details", "BlogPosts")">@recpost.Title</a>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="e-divider-4"></div>
+                                    <div class="clearfix"></div>
+                                </aside>
+                                <!--/Resent Posts Widget-->
+                                
+                            </div>
+                        </div>
+                        <!--/Sidebar-->
+                    </div>
+                </div>
+            </section>
+            <!-- /Articles -->
+
+            <div class="e-divider-6"></div>
+            <div class="text-center"><div class="ornament-divider-fullwidth"><i class="flaticon-art-3"></i></div></div>
+            <div class="e-divider-4"></div>
+        </div>
+        <!-- /Content Sections -->
+    </div>
+    <!-- /Content -->
+</div>
+<!-- /Wrapper -->
+
+@*COMMENT EDIT BUTTON TO FORMAT*@
+
+@*@Html.ActionLink("Edit", "Edit", new { id = Model.BlogPost.Id })*@

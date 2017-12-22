@@ -1,0 +1,158 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 23/05/2016 23:31
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}
+
+.flaticon-anise:before { content: "\f100"; }
+.flaticon-art:before { content: "\f101"; }
+.flaticon-art-1:before { content: "\f102"; }
+.flaticon-art-10:before { content: "\f103"; }
+.flaticon-art-11:before { content: "\f104"; }
+.flaticon-art-12:before { content: "\f105"; }
+.flaticon-art-13:before { content: "\f106"; }
+.flaticon-art-14:before { content: "\f107"; }
+.flaticon-art-15:before { content: "\f108"; }
+.flaticon-art-16:before { content: "\f109"; }
+.flaticon-art-17:before { content: "\f10a"; }
+.flaticon-art-18:before { content: "\f10b"; }
+.flaticon-art-19:before { content: "\f10c"; }
+.flaticon-art-2:before { content: "\f10d"; }
+.flaticon-art-20:before { content: "\f10e"; }
+.flaticon-art-21:before { content: "\f10f"; }
+.flaticon-art-22:before { content: "\f110"; }
+.flaticon-art-23:before { content: "\f111"; }
+.flaticon-art-3:before { content: "\f112"; }
+.flaticon-art-4:before { content: "\f113"; }
+.flaticon-art-5:before { content: "\f114"; }
+.flaticon-art-6:before { content: "\f115"; }
+.flaticon-art-7:before { content: "\f116"; }
+.flaticon-art-8:before { content: "\f117"; }
+.flaticon-art-9:before { content: "\f118"; }
+.flaticon-beautiful-lotus-flower:before { content: "\f119"; }
+.flaticon-blossom:before { content: "\f11a"; }
+.flaticon-carnival-flowers:before { content: "\f11b"; }
+.flaticon-christmas-rose:before { content: "\f11c"; }
+.flaticon-couple-of-roses-in-symmetry:before { content: "\f11d"; }
+.flaticon-decorative-chinese-flower:before { content: "\f11e"; }
+.flaticon-dots:before { content: "\f11f"; }
+.flaticon-double-symmetry-in-floral-design:before { content: "\f120"; }
+.flaticon-floral-ascendant-design:before { content: "\f121"; }
+.flaticon-floral-decorations:before { content: "\f122"; }
+.flaticon-floral-design-of-flowers-and-leaves-on-branches-lines:before { content: "\f123"; }
+.flaticon-floral-design-of-one-flower-and-one-leaf:before { content: "\f124"; }
+.flaticon-floral-design-silhouette:before { content: "\f125"; }
+.flaticon-floral-design-variant-border:before { content: "\f126"; }
+.flaticon-floral-design-with-curled-edges:before { content: "\f127"; }
+.flaticon-floral-design-with-flowers-leaves-and-buds-on-vines:before { content: "\f128"; }
+.flaticon-floral-design-with-one-closed-central-flower-on-top-of-vines-curves:before { content: "\f129"; }
+.flaticon-floral-design-with-symmetry:before { content: "\f12a"; }
+.flaticon-floral-design-with-vines-and-swirls:before { content: "\f12b"; }
+.flaticon-floral-ornament:before { content: "\f12c"; }
+.flaticon-flower:before { content: "\f12d"; }
+.flaticon-flower-1:before { content: "\f12e"; }
+.flaticon-flower-2:before { content: "\f12f"; }
+.flaticon-flower-bud-design-with-vines-and-leaves-silhouette:before { content: "\f130"; }
+.flaticon-flower-bud-outline-and-vines-design:before { content: "\f131"; }
+.flaticon-flower-on-a-branch-with-three-seeds:before { content: "\f132"; }
+.flaticon-flower-on-vines-ornamental-design:before { content: "\f133"; }
+.flaticon-flower-ornament:before { content: "\f134"; }
+.flaticon-flower-shape:before { content: "\f135"; }
+.flaticon-geometric-shapes:before { content: "\f136"; }
+.flaticon-lily:before { content: "\f137"; }
+.flaticon-line:before { content: "\f138"; }
+.flaticon-natural-branch-with-flower-seeds-and-leaf:before { content: "\f139"; }
+.flaticon-nature:before { content: "\f13a"; }
+.flaticon-nature-1:before { content: "\f13b"; }
+.flaticon-nature-10:before { content: "\f13c"; }
+.flaticon-nature-11:before { content: "\f13d"; }
+.flaticon-nature-12:before { content: "\f13e"; }
+.flaticon-nature-13:before { content: "\f13f"; }
+.flaticon-nature-14:before { content: "\f140"; }
+.flaticon-nature-15:before { content: "\f141"; }
+.flaticon-nature-16:before { content: "\f142"; }
+.flaticon-nature-17:before { content: "\f143"; }
+.flaticon-nature-18:before { content: "\f144"; }
+.flaticon-nature-19:before { content: "\f145"; }
+.flaticon-nature-2:before { content: "\f146"; }
+.flaticon-nature-20:before { content: "\f147"; }
+.flaticon-nature-21:before { content: "\f148"; }
+.flaticon-nature-3:before { content: "\f149"; }
+.flaticon-nature-4:before { content: "\f14a"; }
+.flaticon-nature-5:before { content: "\f14b"; }
+.flaticon-nature-6:before { content: "\f14c"; }
+.flaticon-nature-7:before { content: "\f14d"; }
+.flaticon-nature-8:before { content: "\f14e"; }
+.flaticon-nature-9:before { content: "\f14f"; }
+.flaticon-one-flower-and-one-leaf-on-a-branch:before { content: "\f150"; }
+.flaticon-one-flower-floral-design:before { content: "\f151"; }
+.flaticon-one-rose:before { content: "\f152"; }
+.flaticon-ornament-flower:before { content: "\f153"; }
+.flaticon-ornamental-floral-design:before { content: "\f154"; }
+.flaticon-plate:before { content: "\f155"; }
+.flaticon-rose:before { content: "\f156"; }
+.flaticon-rose-1:before { content: "\f157"; }
+.flaticon-rose-shape:before { content: "\f158"; }
+.flaticon-roses-branch-ornament:before { content: "\f159"; }
+.flaticon-shape:before { content: "\f15a"; }
+.flaticon-shape-1:before { content: "\f15b"; }
+.flaticon-shapes:before { content: "\f15c"; }
+.flaticon-shapes-1:before { content: "\f15d"; }
+.flaticon-shapes-10:before { content: "\f15e"; }
+.flaticon-shapes-11:before { content: "\f15f"; }
+.flaticon-shapes-12:before { content: "\f160"; }
+.flaticon-shapes-13:before { content: "\f161"; }
+.flaticon-shapes-14:before { content: "\f162"; }
+.flaticon-shapes-15:before { content: "\f163"; }
+.flaticon-shapes-16:before { content: "\f164"; }
+.flaticon-shapes-17:before { content: "\f165"; }
+.flaticon-shapes-18:before { content: "\f166"; }
+.flaticon-shapes-19:before { content: "\f167"; }
+.flaticon-shapes-2:before { content: "\f168"; }
+.flaticon-shapes-20:before { content: "\f169"; }
+.flaticon-shapes-21:before { content: "\f16a"; }
+.flaticon-shapes-22:before { content: "\f16b"; }
+.flaticon-shapes-23:before { content: "\f16c"; }
+.flaticon-shapes-3:before { content: "\f16d"; }
+.flaticon-shapes-4:before { content: "\f16e"; }
+.flaticon-shapes-5:before { content: "\f16f"; }
+.flaticon-shapes-6:before { content: "\f170"; }
+.flaticon-shapes-7:before { content: "\f171"; }
+.flaticon-shapes-8:before { content: "\f172"; }
+.flaticon-shapes-9:before { content: "\f173"; }
+.flaticon-spirals-of-vines:before { content: "\f174"; }
+.flaticon-three:before { content: "\f175"; }
+.flaticon-three-1:before { content: "\f176"; }
+.flaticon-tiny-flower:before { content: "\f177"; }
+.flaticon-two:before { content: "\f178"; }
+.flaticon-two-1:before { content: "\f179"; }
+.flaticon-two-2:before { content: "\f17a"; }
+.flaticon-two-3:before { content: "\f17b"; }
+.flaticon-two-opened-flowers-with-a-couple-of-buds-surrounded-by-leaves-on-vines:before { content: "\f17c"; }
+.flaticon-vintage:before { content: "\f17d"; }
+.flaticon-water-lily-flower:before { content: "\f17e"; }

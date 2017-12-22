@@ -1,0 +1,87 @@
+
+
+
+button,
+.contributor-posts-link,
+input[type='button'],
+input[type='reset'],
+input[type='submit'],
+.btn,
+.button,
+.vc_btn3 {
+  line-height: 2.3em;
+  position: relative;
+  display: inline-block;
+  padding: 5px 30px;
+}
+.vc_btn3.vc_btn3-size-sm {
+  font-size: 11px !important;
+  font-weight: bold !important;
+  letter-spacing: 1px !important;
+  padding: 5px 30px !important;
+  line-height: 25px !important;
+}
+
+
+/* Button Sizes */
+.btn-lg {font-size: 15px;}
+.btn-default {font-size: 13px;}
+.btn-sm {font-size: 12px;}
+.btn-xs {font-size: 11px; padding: 3px 9px;}
+
+/* Button Types */
+.btn-blk,
+.btn-rose,
+.btn-rose-str
+ {
+  letter-spacing: 1px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 2px;
+  text-transform: uppercase;
+
+  transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  -webkit-transition: all 0.35s ease-in-out;
+  -o-transition: all 0.35s ease-in-out;
+  -ms-transition: all 0.35s ease-in-out;
+}
+
+.btn-blk {
+  font-family: $font-accident-one-normal;
+  font-style: oblique !important;
+  border: 1px solid $color08;
+  background: $color08;
+  margin-bottom: 12px;
+  color: $color00 !important;;
+  &:hover {  border-color: $hovercolor; background: $hovercolor; color: $color00 !important;  }
+  &:focus {  border-color: $hovercolor; background: $hovercolor; color: $color00 !important;  }
+}
+
+.btn-rose {
+  font-family: $font-accident-one-normal;
+  font-style: oblique !important;
+  border: 1px solid $rose;
+  background: $rose;
+  margin-bottom: 12px;
+  color: $color00 !important;;
+  &:hover {  border-color: $hovercolor; background: $hovercolor; color: $color00 !important;  }
+  &:focus {  border-color: $hovercolor; background: $hovercolor; color: $color00 !important;  }
+}
+.btn-rose-str {
+  font-family: $font-accident-one-normal;
+  font-style: oblique !important;
+  border: 1px solid lighten($rose, 10%);
+  background: $color00;
+  margin-bottom: 12px;
+  color: $rose !important;;
+  &:hover {  border-color: $rose; background: $rose; color: $color00 !important;  }
+  &:focus {  border-color: $rose; background: $rose; color: $color00 !important;  }
+}
+
+
+
+.btn-small {
+  padding: 6px 14px 5px 14px !important;
+  line-height: 1.2em;
+}

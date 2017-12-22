@@ -1,0 +1,64 @@
+
+
+@mixin block-big-margins      {  padding: 160px 0 160px 0;  }
+@mixin block-regular-margins  {  padding: 130px 0 130px 0;  }
+@mixin block-short-margins    {  padding: 100px 0 100px 0;  }
+@mixin infoblock-margins      {  margin: 0 0 24px 0;  }
+@mixin block-null-margins     {  margin: 0;  }
+@mixin footer-margins         {  padding: 60px 0 0 0;    }
+
+.e-block-big    {  @include block-big-margins;  }
+.e-block-regular    {  @include block-regular-margins;  }
+.e-block-short      {  @include block-short-margins;    }
+.e-block-null       {  @include block-null-margins;     }
+.e-block-light {
+  background: $color01;
+  color: $color10;
+  p, h2, h3, h4, h5 {  color: $color10;  }
+  a, .infoblock a   {  color: $color10;
+    &:hover {
+      color: $hovercolor;
+      text-decoration: none;
+    }
+  }
+}
+.e-block-centered {  text-align: center;  }
+.infoblock {
+  @include infoblock-margins;
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .morelink {
+    font-family: $font-accident-one-bold;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 22px;
+    a {
+      text-decoration: none;
+      i {  margin-left: 5px;  }
+    }
+  }
+  .navlinks {
+    a {
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 2px;
+      font-size: 11px;
+    }
+  }
+}
+
+
+
+footer {
+  @include footer-margins;
+  //padding-top: 0;
+  margin-bottom: 24px;
+}
+blockquote footer {
+  padding: 20px 0 20px 0;
+  background: transparent !important;
+}

@@ -1,0 +1,91 @@
+
+$color00:    #fff;
+$color01: #f2f2f2;
+$color02: #dadada;
+$color03: #c1c1c1;
+$color04: #a7a7a7;
+$color05: #8e8e8e;
+$color06: #737373;
+$color07: #5d5d5d;
+$color08: #4a4a4a;
+$color09: #404040;
+$color10: #303030;
+$color11: #252525;
+$color12: #1b1b1b;
+$color13: #101010;
+
+$hovercolor: #e8566d;
+$accentcolor: #43a5e6;
+
+$red: #e74c3c;
+$rose: #e798ac;
+$orange: #e67e22;
+$green: #1abc9c;
+$blue: #3498db;
+$darkblue: #1c4a6c;
+$cyan: #9b59b6;
+$yellow: #d9a81d;
+$l-grey: #f2f2f2;
+$grey: #999;
+
+
+//Font/link Colors
+.fontcolor-regular, .fontcolor-regular a {color: $color10 !important;;}
+.fontcolor-invert, .fontcolor-invert a {color: $color01 !important;}
+.fontcolor-medium, .fontcolor-medium a {color: $color06 !important;}
+.fontcolor-medium-light {
+  color: $color05 !important;
+  a {
+    color: $color05 !important;
+    &:hover, &:focus {color: $hovercolor !important;}
+  }
+}
+.hovercolor, .hovercolor a {color: $hovercolor !important;}
+.accent-color, .accent-color a {color: $accentcolor !important;}
+.accent-color a:hover {color: $hovercolor !important;}
+
+.rose {color: $rose;}
+.darkrose {color: darken($rose, 6%);}
+
+.color00 {color: $color00 !important;}
+.color01 {color: $color01 !important;}
+.color02 {color: $color02 !important;}
+.color03 {color: $color03 !important;}
+.color04 {color: $color04 !important;}
+.color05 {  color: $color05 !important; a {  color: $color05; &:hover {color: $hovercolor;} } }
+.color06 {color: $color06 !important;}
+.color07 {color: $color07 !important;}
+.color08 {color: $color08 !important;}
+.color09 {color: $color09 !important;}
+.color10 {color: $color10 !important;}
+.color11 {color: $color11 !important;}
+.color12 {color: $color12 !important;}
+.color13 {color: $color13 !important;}
+
+//Background Color Classes
+.bg-color00 {background-color: $color00 !important;}
+.bg-color01 {background-color: $color01 !important;}
+.bg-color02 {background-color: $color02 !important;}
+.bg-color03 {background-color: $color03 !important;}
+.bg-color04 {background-color: $color04 !important;}
+.bg-color05 {background-color: $color05 !important;}
+.bg-color06 {background-color: $color06 !important;}
+.bg-color07 {background-color: $color07 !important;}
+.bg-color08 {background-color: $color08 !important;}
+.bg-color09 {background-color: $color09 !important;}
+.bg-color10 {background-color: $color10 !important;}
+.bg-color11 {background-color: $color11 !important;}
+.bg-color12 {background-color: $color12 !important;}
+.bg-color13 {background-color: $color13 !important;}
+
+.bg-red {background-color: $red !important;}
+.bg-rose {background-color: $rose !important;}
+.bg-orange {background-color: $orange !important;}
+.bg-green {background-color: $green !important;}
+.bg-blue {background-color: $blue !important;}
+.bg-darkblue {background-color: $darkblue !important;}
+.bg-cyan {background-color: $cyan !important;}
+.bg-yellow {background-color: $yellow !important;}
+.bg-l-grey {background-color: $l-grey !important;}
+.bg-grey {background-color: $grey !important;}
+.bg-skin {background-color: $color00 !important;}

@@ -1,0 +1,82 @@
+/*------------------------------------------------------------------
+[13. Media Query]
+*/
+
+
+@media (max-width: 1200px) {
+  .cbp-af-header h1 {  font-size: 3.1em;  }
+}
+
+@media (min-width: 992px) {  }
+
+@media (max-width: 992px) {
+  .cbp-af-header .navbar-nav > li > a {
+    letter-spacing: 1px;
+    font-size: 13px;
+    padding: 15px 21px 16px 32px;
+    &:before {display: none;}
+  }
+  .sidebar {
+    margin-left: 0;
+    margin-top: 72px;
+    overflow: visible;
+  }
+  .widget:after {  left: 46%;  }
+  #instagram {
+    .slider-item {margin-bottom: 32px; display: inline-block !important; float: none !important;}
+  }
+  .pull-left {float: none !important;}
+  .pull-right {float: none !important;}
+  .has-sidebar-right .sidebar {  margin-left: 0;  }
+  .has-sidebar-left .sidebar {  margin-right: 0;  }
+}
+
+//@media (min-width: 768px) {  }
+
+@media (max-width: 768px) {
+  #content {  padding-top: 100px;  }
+  .navbar-default .navbar-nav > li > a:before {  display: none;  }
+  .feat-post, .owl-nav, .owl-dots {display: none;}
+  .cbp-af-header {
+    h1 {  font-size: 3.1em;  }
+    .subtitle {display: none;}
+  }
+  .cbp-af-header h1, .cbp-af-header.cbp-af-header-shrink h1  {  line-height: 70px;  }
+  .cbp-af-header .navbar-header {  padding-bottom: 0;  }
+  .bordered {  border-bottom: none !important; border-top: none !important;  }
+  .cbp-af-header .navbar-toggle,
+  .cbp-af-header.cbp-af-header-shrink .navbar-toggle {  top: 14px;  }
+  .padding-side-60 {  padding: 0 20px;  }
+  .navbar-collapse.in {
+    border-color: $color01;
+    //background: $color01;
+    margin: 0 !important;
+    //position: fixed;
+    width: 100%;
+    left: 0;
+    li.dropdown > ul > li {  padding: 3px 0;  }
+  }
+  .cbp-af-header .navbar-nav {  margin: 0;  }
+  .cbp-af-header.cbp-af-header-shrink .navbar-collapse {  margin-top: 0;  }
+  .navbar-nav>li>a {
+    color: $color10 !important;
+    &:hover, &:focus {color: $hovercolor !important;}
+  }
+  .navbar-nav .open .dropdown-menu {
+    margin-left: 18px;
+  }
+  //.navbar-collapse.in {padding-top: 0;}
+}
+
+@media (max-width: 400px) {
+  #owl-carousel {display: none;}
+  .cbp-af-header.cbp-af-header-shrink h1 {  font-size: 2.6em;  }
+  .cbp-af-header h1, .cbp-af-header.cbp-af-header-shrink h1  {  line-height: 60px;  }
+  .cbp-af-header .navbar-toggle,
+  .cbp-af-header.cbp-af-header-shrink .navbar-toggle {  top: 8px;  }
+  .padding-side-60 {  padding: 0 10px;  }
+  #back-top a {
+    bottom: 25px;
+    right: 15px;
+  }
+}

@@ -1,0 +1,86 @@
+
+
+/* Headings Fonts variables */
+$font-accident-one-bold:          'Montserrat', sans-serif;
+$font-accident-one-normal:        'Montserrat', sans-serif;
+$font-accident-two:               'Cinzel', serif;
+$font-accident-three:             'Great Vibes', cursive;
+$font-accident-four:              'Lora', serif;
+$font-accident-five:              'EB Garamond', serif;
+$font-regular:                    'Raleway', sans-serif;
+
+/* Heading font one */
+.font-accident-one-bold           {  font-family: $font-accident-one-bold;  font-weight: 700;  font-style: normal;  }
+.font-accident-one-normal         {  font-family: $font-accident-one-normal;  font-weight: 400;  font-style: normal;  }
+
+/* Heading font two */
+.font-accident-two-normal         {  font-family: $font-accident-two;  font-style: normal;  }
+.font-accident-two-oblique        {  font-family: $font-accident-two;  font-style: oblique;  }
+.font-accident-two-bold           {  font-family: $font-accident-two;  font-weight: bold ;  }
+.font-accident-two-bold-italic    {  font-family: $font-accident-two;  font-weight: bold;  font-style: oblique;  }
+
+/* Heading font three */
+.font-accident-three-normal       {  font-family: $font-accident-three;  font-style: normal;  }
+.font-accident-three-italic       {  font-family: $font-accident-three;  font-style: oblique;  }
+.font-accident-three-bold         {  font-family: $font-accident-three;  font-weight: bold ;  }
+.font-accident-three-bold-italic  {  font-family: $font-accident-three;  font-weight: bold ;  font-style: oblique; }
+
+/* Heading font four */
+.font-accident-four-normal       {  font-family: $font-accident-four;  font-style: normal;  }
+.font-accident-four-italic       {  font-family: $font-accident-four;  font-style: oblique;  }
+.font-accident-four-bold         {  font-family: $font-accident-four;  font-weight: bold ;  }
+
+/* Regular font */
+.font-regular-light               {  font-family: $font-regular;  font-weight: 400;  font-style: normal;  }
+.font-regular-normal              {  font-family: $font-regular;  font-weight: 400;  font-style: normal;  }
+.font-regular-bold                {  font-family: $font-regular;  font-weight: 700;  font-style: normal;  }
+
+/* Headings */
+h1 {}
+h2 {}
+h3 {letter-spacing: 3px;}
+h4 {}
+h5 {}
+h6 {
+  margin: 1.5em 0 .75em;
+  text-transform: uppercase;
+  font-weight: normal;
+  line-height: 1.4;
+  position: relative;
+  color: #333;
+  font-weight: 600;
+}
+
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+  margin-top: 0;
+}
+
+.highlight {
+  color: $rose;
+  font-style: normal;
+}
+
+/* Letter spacing */
+.letter-spacing-03 {letter-spacing: 3px;}
+
+/* Paragraphs */
+.small {font-size: 12px;}
+.extrasmall {font-size: 10px;}
+.superheading {  font-size: 48px;  }
+
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-family: $font-accident-four;
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $color05;
+}
