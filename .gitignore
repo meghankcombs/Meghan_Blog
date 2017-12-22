@@ -297,3 +297,7 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+# Ignore these files
+private.config
+Web.config
