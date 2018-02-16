@@ -22,7 +22,7 @@ namespace Meghan_Blog.Models
         public string Slug { get; set; }
         public bool Published { get; set; }
 
-        //Navigation Properties
+        //Navigation Properties (children of BlogPost class)
         public virtual ICollection<Comment> Comments { get; set; }
 
         //Constructor

@@ -1,4 +1,5 @@
 ﻿@using Meghan_Blog.Models;
+@using Meghan_Blog.ViewModels;
 @using Microsoft.AspNet.Identity;
 
 <!DOCTYPE HTML>
@@ -70,8 +71,8 @@
                                             <li><a href="@Url.Action("Login", "Account")">Login</a></li>
                                             <li><a href="@Url.Action("Register", "Account")">Register</a></li>
                                             <li><a href="@Url.Action("Index", "BlogPosts")">Archive</a></li>
-                                            <li><a href="http://mcombs-portfolio.azurewebsites.net#about" target="_blank">About</a></li>
-                                            <li><a href="http://mcombs-portfolio.azurewebsites.net#contact" target="_blank">Contact</a></li>
+                                            <li><a href="http://mcombs-mvcportfolio.azurewebsites.net#about" target="_blank">About</a></li>
+                                            <li><a href="http://mcombs-mvcportfolio.azurewebsites.net#contact" target="_blank">Contact</a></li>
                                         }
 
                                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin") == false)
@@ -82,7 +83,7 @@
                                             <li class="dropdown">
                                                 <a class="dropdown-toggle" data-toggle="dropdown">Hello @userFName!<b class="caret"></b></a>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="@Url.Action("UpdateImage", "Account")">Update Photo</a></li>
+                                                    <li><a data-toggle="modal" data-target="#MKCModal" @*href="@Url.Action("UpdateImage", "Account")"*@>Update Photo</a></li>
                                                     <li>
                                                         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                                                         {
@@ -99,14 +100,14 @@
 
                                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                                         {
-                                            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
                                             var userId = User.Identity.GetUserId();
                                             var userFName = db.Users.FirstOrDefault(n => n.Id == userId).FirstName;
+                                            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
                                             <li><a>Hello @userFName!</a></li>
                                             <li class="dropdown">
                                                 <a class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="@Url.Action("UpdateImage", "Account")">Update Photo</a></li>
+                                                    <li><a data-toggle="modal" data-target="#MKCModal" @*href="@Url.Action("UpdateImage", "Account")*@>Update Photo</a></li>
                                                     <li><a href="@Url.Action("Create", "BlogPosts")">Create Post</a></li>
                                                     <li><a href="@Url.Action("Index", "BlogPosts")">Published Posts</a></li>
                                                     <li><a href="@Url.Action("UnpublishedIndex", "BlogPosts")">Unpublished Posts</a></li>
@@ -120,8 +121,6 @@
                                                 </ul>
                                             </li>
                                         }
-                                        
-                                        
                                     </ul>
                                 </nav>
                             </div>
@@ -131,6 +130,46 @@
                 </div>
             </header>
             <!-- END HEADER -->
+            <!-- IMAGE MODAL -->
+            <div id="MKCModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="entry-title page-title">Update Photo</h4>
+                        </div>
+                        <div class="modal-body">
+                            @using (Html.BeginForm("UpdateImage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="col-md-12 e-centered">
+                                    <div id="form-messages"></div>
+
+                                    <div class="field text-center">
+                                        <label for="file" class="btn btn-btncolor btn-sm btn-file">
+                                            Upload Photo<input type="file" name="UserPhoto" id="file" accept=".png,.jpg,.jpeg,.gif,.tif" style="display: none;" />
+                                        </label>
+                                    </div>
+                                    <div class="e-divider-1"></div>
+                                    <div class="field text-center">
+                                        <button type="submit" class="btn btn-lg btn-blk">Update</button>
+                                    </div>
+                                </div><!-- end col-md-12 -->
+                            }
+                        </div>
+                        <div class="text-center"><div class="ornament-divider-fullwidth"><i class="flaticon-art-3"></i></div></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- END IMAGE MODAL -->
+            
+            
 
             @RenderBody();
 
@@ -244,6 +283,7 @@
 
     <!-- SCRIPTS -->
     <script src="~/assets/vendor/jquery/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/assets/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="~/assets/vendor/animatedheader/js/classie.js"></script>
     <script src="~/assets/vendor/animatedheader/js/cbpAnimatedHeader.min.js"></script>

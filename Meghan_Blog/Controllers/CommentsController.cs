@@ -68,24 +68,26 @@ namespace Meghan_Blog.Controllers
             return View(comment);
         }
 
-        // GET: Comments/Edit/5
-        [Authorize(Roles = "Admin")]
-        [Authorize(Roles = "Moderator")]
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
-            ViewBag.BlogPostId = new SelectList(db.BlogPosts, "Id", "Title", comment.BlogPostId);
-            return View(comment);
-        }
+        #region GET EDIT CODE
+        //GET: Comments/Edit/5
+        //[Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Moderator")]
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Comment comment = db.Comments.Find(id);
+        //    if (comment == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
+        //    ViewBag.BlogPostId = new SelectList(db.BlogPosts, "Id", "Title", comment.BlogPostId);
+        //    return View(comment);
+        //}
+        #endregion
 
         // POST: Comments/Edit/5
         [HttpPost]
@@ -121,6 +123,7 @@ namespace Meghan_Blog.Controllers
         //}
 
         // POST: Comments/Delete/5
+
         [/*HttpPost, */ActionName("Delete")]
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

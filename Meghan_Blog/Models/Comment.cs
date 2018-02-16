@@ -18,7 +18,7 @@ namespace Meghan_Blog.Models
         public DateTime? Updated { get; set; }// ? makes it nullable
         public string UpdateReason { get; set; }
 
-        //Navigation Properties
+        //Navigation Properties (parents of Comment class)
         public virtual ApplicationUser Author { get; set; }
         public virtual BlogPost BlogPost { get; set; }
     }

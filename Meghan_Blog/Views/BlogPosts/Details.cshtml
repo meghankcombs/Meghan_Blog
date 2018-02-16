@@ -67,13 +67,13 @@
 
                                                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                                                         {
-                                                            <p><a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" class="btn btn-small btn-rose-str">Edit</a></p>
-                                                            <p><a href="@Url.Action("Delete", "Comments", new { Id = comment.Id })" class="btn btn-small btn-rose-str">Delete</a></p>
+                                                                <p><a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" data-toggle="modal" data-target="#editModal" class="btn btn-small btn-rose-str">Edit</a></p>
+                                                                <p><a href="@Url.Action("Delete", "Comments", new { Id = comment.Id })" class="btn btn-small btn-rose-str">Delete</a></p>
                                                         }
 
                                                         @if (User.Identity.IsAuthenticated && User.IsInRole("Moderator"))
                                                         {
-                                                            <p><a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" class="btn btn-small btn-rose-str">Edit</a></p>
+                                                            <p><a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" data-toggle="modal" data-target="#editModal" class="btn btn-small btn-rose-str">Edit</a></p>
                                                             <p><a href="@Url.Action("Delete", "Comments", new { Id = comment.Id })" class="btn btn-small btn-rose-str">Delete</a></p>
                                                         }
 
@@ -90,7 +90,7 @@
                                     <!--Post Comment-->
                                     @if (User.Identity.IsAuthenticated)
                                     {
-                                    <section @*id="post-comment"*@ class="">
+                                    <section class="">
                                         <div class="e-divider-2"></div>
                                         <h3 class="font-accident-two-normal e-uppercase">Leave a Comment</h3>
                                         <div class="e-divider-3"></div>
@@ -117,6 +117,52 @@
                             </div>
                         </div>
                         <!--/Content Column-->
+
+                        <!-- EDIT MODAL -->
+                        <div id="editModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="entry-title page-title">Edit Comment</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!--Edit Comment-->
+                                        @using (Html.BeginForm("Edit", "Comments", FormMethod.Post))
+                                        {
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.ChangeableComments.Id)
+                                        @Html.HiddenFor(model => model.ChangeableComments.BlogPostId)
+                                        @Html.HiddenFor(model => model.ChangeableComments.AuthorId)
+                                        @Html.HiddenFor(model => model.ChangeableComments.Created)
+                                        <div class="field row">
+                                            <div class="col-md-12 editbody">
+                                                @Html.TextAreaFor(model => model.ChangeableComments.Body)
+                                                @Html.ValidationMessageFor(model => model.ChangeableComments.Body, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="e-divider-3 col-md-12"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="field text-center">
+                                                <button type="submit" class="btn btn-lg btn-blk">Save Changes</button>
+                                            </div>
+                                        </div>
+                                        }
+                                        <!--/End Edit Comment-->
+                                    </div>
+                                    <div class="text-center"><div class="ornament-divider-fullwidth"><i class="flaticon-art-3"></i></div></div>
+                                    <div class="modal-footer">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- END EDIT MODAL -->
 
                         <!--Sidebar-->
                         <div class="col-md-4 sticky-column" data-sticky_column>

@@ -10,10 +10,11 @@ namespace Meghan_Blog.ViewModels
     {    
         public List<BlogPost> RecentPosts { get; set; }
         public BlogPost BlogPost { get; set; }
+        public Comment ChangeableComments { get; set; }
 
         public CustomPostDetail()
         {
-            this.RecentPosts = new List<BlogPost>();             
+            this.RecentPosts = new List<BlogPost>();
         }    
     }
 }
