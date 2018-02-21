@@ -91,6 +91,26 @@
     height: 250px;
 }
 
+.btnmarginDetailsPg {
+    margin-top: -20px;
+}
+
+.userpicfix {
+    overflow: hidden;
+    height: 200px;
+    position: absolute; /* or fixed */
+    margin-left: 25px;
+}
+
+.modalmaxwidth {
+    max-width: 500px;
+}
+
+.editPicFix {
+    
+}
+
+
 
 
 

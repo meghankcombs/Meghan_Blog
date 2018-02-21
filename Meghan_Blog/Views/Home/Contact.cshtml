@@ -1,17 +1,138 @@
-﻿@{
-    ViewBag.Title = "Contact";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿@model Meghan_Blog.Models.EmailModel
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<!-- Content Sections -->
+<div id="content">
+    <div class="e-divider-2"></div>
+    <!-- Page Content -->
+    <section id="articles" class="">
+        <div class="container">
+            <div class="row">
+                <article id="01" class="page-block col-md-12 page hentry">
+                    <div class="e-divider-2"></div>
+                    <div class="page-detail text-center">
+                        <h2 class="entry-title page-title"><a href="#!">Contact me</a></h2>
+                    </div>
+                    <div class="text-center"><div class="ornament-divider-fullwidth"><i class="flaticon-art-3"></i></div></div>
+                    <div class="inner-content"></div>
+                </article>
+            </div>
+        </div>
+    </section>
+    <!-- /Page Content -->
+    <!-- Feedback Block -->
+    <section id="feedback-block" class="e-block-null text-center">
+        <div class="container padding-side-60">
+            <div class="row">
+                <div class="col-md-12 e-centered">
+                    <div class="e-divider-2"></div>
+                    <div id="form-messages"></div>
+                    @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                    <div class="field">
+                        @*<input type="text" id="name" name="name" placeholder="Name" required>*@
+                        @Html.TextBoxFor(m => m.FromName, new { placeholder = "Name" })
+                    </div>
+                        <div class="e-divider-1"></div>
+                        <div class="field">
+                            @*<input type="email" id="email" name="email" placeholder="Email" required>*@
+                            @Html.TextBoxFor(m => m.FromEmail, new { placeholder = "Email" })
+                        </div>
+                        <div class="e-divider-1"></div>
+                        <div class="field">
+                            @*<textarea id="message" name="message" placeholder="Message" rows="7" cols="30" required></textarea>*@
+                            @Html.TextAreaFor(m => m.Body, new { rows = 7, cols = 30, placeholder = "Your Message" })
+                        </div>
+                        <div class="e-divider-2"></div>
+                        <div class="field text-center">
+                            <button type="submit" class="btn btn-lg btn-blk">Send Message</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="e-divider-2"></div>
+    </section>
+    <!-- /Feedback Block -->
+    <div class="e-divider-10"></div>
+    <!--Contact Data-->
+    <section id="contacts-data" class="e-block-null">
+        <div class="container padding-side-60">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-sm-2"><span class="font-accident-four-italic darkrose uppercase">Address:</span></div>
+                        <div class="col-sm-10"><p class="color05">12234 Direct Drive, Daytona Beach, Fl USA</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2"><span class="font-accident-four-italic darkrose uppercase">Phone:</span></div>
+                        <div class="col-sm-10"><p class="color05">1 234 567-64-35</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2"><span class="font-accident-four-italic darkrose uppercase">Skype:</span></div>
+                        <div class="col-sm-10"><p class="color05">emmafletcher</p></div>
+                    </div>
+                </div>
+                <div class="col-md-6 wow fadeInLeft" data-wow-delay="0.6s" data-wow-offset="10">
+                    <div class="row">
+                        <div class="col-sm-2"><span class="font-accident-four-italic darkrose uppercase">Twitter:</span></div>
+                        <div class="col-sm-10"><p class="color05"><a href="#!">https://twitter.com/emmafletcher</a></p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2"><span class="font-accident-four-italic darkrose uppercase">Facbook:</span></div>
+                        <div class="col-sm-10"><p class="color05"><a href="#!">https://www.facebook.com/emmafletcher</a></p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2"><span class="font-accident-four-italic darkrose uppercase">Linkedin:</span></div>
+                        <div class="col-sm-10"><p class="color05"><a href="#!">https://www.linkedin.com/emmafletcher</a></p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="e-divider-8"></div>
+        </div>
+    </section>
+    <!--/Contact Data-->
+    <!-- Google Map -->
+    <section class="">
+        <div class="container">
+            <div id="gm-panel">
+                <div id="google-map" class="bigmap"></div>
+            </div>
+        </div>
+    </section>
+    <!-- /Google Map -->
+    <!--Share Section-->
+    <section id="share" class="e-block-null">
+        <div class="container text-center">
+            <div class="share-tag-box">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="darkrose lined">Share This</h4>
+                        <ul class="list-inline social share">
+                            <!-- Social Share -->
+                            <li>
+                                <a href="#!" class="rst-icon-facebook"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#!" class="rst-icon-twitter"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#!" class="rst-icon-google-plus"><i class="fa fa-google-plus"></i></a>
+                            </li>
+                            <li>
+                                <a href="#!" class="rst-icon-linkedin"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a class="rst-icon-pinterest" href="#!"><i class="fa fa-pinterest"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="e-divider-6"></div>
+    </section>
+    <div class="text-center"><div class="ornament-divider-fullwidth"><i class="flaticon-art-3"></i></div></div>
+    <div class="e-divider-4"></div>
+</div>
+<!-- /Content Sections -->

@@ -67,8 +67,7 @@ namespace Meghan_Blog.Controllers
             
             return View(comment);
         }
-
-        #region GET EDIT CODE
+        
         //GET: Comments/Edit/5
         //[Authorize(Roles = "Admin")]
         //[Authorize(Roles = "Moderator")]
@@ -83,27 +82,31 @@ namespace Meghan_Blog.Controllers
         //    {
         //        return HttpNotFound();
         //    }
-        //    ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
-        //    ViewBag.BlogPostId = new SelectList(db.BlogPosts, "Id", "Title", comment.BlogPostId);
         //    return View(comment);
         //}
-        #endregion
 
         // POST: Comments/Edit/5
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,BlogPostId,AuthorId,Body,Created")] Comment comment)
+        public ActionResult Edit([Bind(Include = "Id,BlogPostId,AuthorId,Created,Body")] Comment comment)
         {
+            comment.Id = int.Parse(Request.Form[1]);
+            comment.BlogPostId = int.Parse(Request.Form[2]);
+            comment.AuthorId = Request.Form[3];
+            comment.Created = DateTime.Parse(Request.Form[4]);
+            comment.Body = Request.Form[5];
+
+            ViewBag.PreviousUrl = System.Web.HttpContext.Current.Request.UrlReferrer.ToString();
+
             if (ModelState.IsValid)
             {
                 comment.Updated = DateTime.Now;
                 db.Entry(comment).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", "BlogPosts");
+                return Redirect(ViewBag.PreviousUrl);
             }
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
-            ViewBag.BlogPostId = new SelectList(db.BlogPosts, "Id", "Title", comment.BlogPostId);
-            return View(comment);
+            return View(comment); 
         }
 
         // GET: Comments/Delete/5
@@ -121,6 +124,7 @@ namespace Meghan_Blog.Controllers
         //    }
         //    return View(comment);
         //}
+
 
         // POST: Comments/Delete/5
 

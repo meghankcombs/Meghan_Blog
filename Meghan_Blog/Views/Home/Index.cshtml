@@ -41,7 +41,6 @@
                     </div>
                 </div>
                 <!--/Content Column-->
-
                 <!--Sidebar-->
                 <div class="col-md-4 sticky-column" data-sticky_column>
                     <div class="sidebar">
@@ -63,7 +62,6 @@
                             <div class="clearfix"></div>
                         </aside>
                         <!--/ About Widget-->
-                        
                         <!--Recent Posts Widget-->
                         <aside id="resent-widget" class="widget widget_recent_post">
                             <div class="title widget-title lined">Recent Posts</div>
@@ -99,3 +97,14 @@
     <div class="e-divider-4"></div>
 </div>
 <!-- /Content Sections -->
+
+@section scripts {
+    @if (TempData.ContainsKey("BlogMessage"))
+    {
+        <script>
+            $(function () {
+                swal('Thank you!', '@TempData["BlogMessage"]', 'success');
+            });
+        </script>
+    }
+}

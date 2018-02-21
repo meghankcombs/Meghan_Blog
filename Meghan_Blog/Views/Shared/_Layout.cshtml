@@ -1,5 +1,6 @@
 ﻿@using Meghan_Blog.Models;
 @using Meghan_Blog.ViewModels;
+@using Meghan_Blog.Helpers;
 @using Microsoft.AspNet.Identity;
 
 <!DOCTYPE HTML>
@@ -23,11 +24,17 @@
     <link href="~/assets/vendor/fontawesome/css/font-awesome.min.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
     <link href="~/assets/vendor/owl-carousel/assets/owl.carousel.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
     <link href="~/assets/custom/css/style.css" property='stylesheet' rel="stylesheet" type="text/css" media="screen" />
+    
+    <!-- PAGING CSS-->
     <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css">
+
+    <!-- SWEET ALERT -->
+    <link href="~/Content/sweetalert.css" rel="stylesheet" />
+
+    <!-- MY CUSTOM CSS -->
     <link href="~/Content/custom.css" rel="stylesheet" />
 
-
-
+    
 </head>
 
 <body class="boxed">
@@ -41,7 +48,6 @@
 
         <!-- Content -->
         <div id="page-content-wrapper" class="content-wrap">
-
             <!-- HEADER -->
             <header class="cbp-af-header toggled">
                 <div class="cbp-af-inner">
@@ -72,7 +78,7 @@
                                             <li><a href="@Url.Action("Register", "Account")">Register</a></li>
                                             <li><a href="@Url.Action("Index", "BlogPosts")">Archive</a></li>
                                             <li><a href="http://mcombs-mvcportfolio.azurewebsites.net#about" target="_blank">About</a></li>
-                                            <li><a href="http://mcombs-mvcportfolio.azurewebsites.net#contact" target="_blank">Contact</a></li>
+                                            <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
                                         }
 
                                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin") == false)
@@ -132,7 +138,7 @@
             <!-- END HEADER -->
             <!-- IMAGE MODAL -->
             <div id="MKCModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
+                <div class="modal-dialog modalmaxwidth">
 
                     <!-- Modal content-->
                     <div class="modal-content">
@@ -141,35 +147,50 @@
                             <h4 class="entry-title page-title">Update Photo</h4>
                         </div>
                         <div class="modal-body">
+
                             @using (Html.BeginForm("UpdateImage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
                             {
                                 @Html.AntiForgeryToken()
-                                <div class="col-md-12 e-centered">
-                                    <div id="form-messages"></div>
+                                <div class="row">
+                                    <div class="col-md-6 e-centered">
+                                        <img class="img-circle author-img userpicfix" src="@Url.Action("CommentAuthorPhoto", "Home", new { userId = User.Identity.GetUserId() })">
+                                        <div class="e-divider-2"></div>
+                                    </div><!-- end col-md-6 -->
+                                    <div class="col-md-6 e-centered">
+                                        <div class="e-divider-2"></div>
 
-                                    <div class="field text-center">
-                                        <label for="file" class="btn btn-btncolor btn-sm btn-file">
-                                            Upload Photo<input type="file" name="UserPhoto" id="file" accept=".png,.jpg,.jpeg,.gif,.tif" style="display: none;" />
-                                        </label>
-                                    </div>
-                                    <div class="e-divider-1"></div>
-                                    <div class="field text-center">
-                                        <button type="submit" class="btn btn-lg btn-blk">Update</button>
-                                    </div>
-                                </div><!-- end col-md-12 -->
+                                        <div class="field text-center">
+                                            <label for="MKCimg" class="btn btn-btncolor btn-sm btn-file">
+                                                Upload Photo
+                                                <input id="MKCimg" type="file" name="file" style="display: none;" />
+                                            </label>
+                                            <div class="e-divider-1"></div>
+                                            <div class="field" id="img-selected"></div>
+                                        </div>
+
+                                        <div class="e-divider-2"></div>
+                                        <div class="field text-center">
+                                            <button type="submit" class="btn btn-lg btn-blk">Update</button>
+                                        </div>
+
+                                        <div class="e-divider-2"></div>
+                                        <div class="field text-center">
+                                            <div class="text-center"><div class="ornament-divider-fullwidth"><i class="flaticon-art-3"></i></div></div>
+                                        </div>
+                                        <div class="e-divider-2"></div>
+                                    </div><!-- end col-md-6 -->
+                                </div><!-- end row -->
                             }
                         </div>
-                        <div class="text-center"><div class="ornament-divider-fullwidth"><i class="flaticon-art-3"></i></div></div>
+
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-small btn-rose-str" data-dismiss="modal">Close</button>
                         </div>
                     </div>
 
                 </div>
             </div>
             <!-- END IMAGE MODAL -->
-            
-            
 
             @RenderBody();
 
@@ -190,19 +211,19 @@
                             </div>
                             <div class="col-md-2">
                             </div>
-                                @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Get))
-                                {
-                                    <div class="col-md-5">
-                                        <p>
-                                            <input class="newsletter-email" id="searchStr" name="searchStr" type="text" placeholder="Search">
-                                        </p>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <p>
-                                            <button type="submit" class="btn btn-small btncolor" id="searchStr" name="searchStr"><i class="fa fa-search text-center"></i></button>
-                                        </p>
-                                    </div>
-                                }
+                            @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Get))
+                            {
+                                <div class="col-md-5">
+                                    <p>
+                                        <input class="newsletter-email" id="searchStr" name="searchStr" type="text" placeholder="Search">
+                                    </p>
+                                </div>
+                                <div class="col-md-1">
+                                    <p>
+                                        <button type="submit" class="btn btn-small btncolor" id="searchStr" name="searchStr"><i class="fa fa-search text-center"></i></button>
+                                    </p>
+                                </div>
+                            }
                         </div>
                         <div class="row">
                             <div class="col-md-4 col-sm-6 col-xs-12">
@@ -231,7 +252,7 @@
                                                 <a href="javascript:document.getElementById('logoutForm').submit()"><p>Log out</p></a>
                                             }
                                         }
-                                        
+
                                     </div>
                                     <!-- / Contacts Widget -->
                                 </div>
@@ -248,7 +269,7 @@
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="infoblock">
                                     <p class="small color06">
-                                        1231 Shields Rd.,<br>Kernersville, NC <br/>27284
+                                        1231 Shields Rd.,<br>Kernersville, NC <br />27284
                                     </p>
                                     <p class="small color06">
                                         +1 234 567-8910
@@ -268,7 +289,6 @@
                 </div>
             </footer>
             <!--END FOOTER -->
-
             <!-- Back to Top -->
             <div id="back-top"><a href="#top"></a></div>
             <!-- /Back to Top -->
@@ -281,9 +301,7 @@
 
     <div id="image-cache" class="hidden"></div>
 
-    <!-- SCRIPTS -->
     <script src="~/assets/vendor/jquery/js/jquery-2.2.0.min.js" type="text/javascript"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/assets/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="~/assets/vendor/animatedheader/js/classie.js"></script>
     <script src="~/assets/vendor/animatedheader/js/cbpAnimatedHeader.min.js"></script>
@@ -291,14 +309,28 @@
     <script src="~/assets/vendor/sticky-scroll/js/jquery.stickit.min.js" type="text/javascript"></script>
     <script src="~/assets/vendor/imagesloaded/js/imagesloaded.pkgd.min.js" type="text/javascript"></script>
     <script src="~/assets/vendor/owl-carousel/owl.carousel.min.js" type="text/javascript"></script>
-    <script src="~/assets/vendor/animatedheader/js/modernizr.custom.js"></script>
-  
+
+    <!-- TEMPLATE CUSTOM JS -->
+    <script src="~/assets/custom/js/script.js" type="text/javascript"></script>
+
+    <!-- MY SCRIPTS -->
     <script src="~/Scripts/tinymce/tinymce.min.js"></script>
     <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
-   
-    <script src="~/assets/custom/js/script.js" type="text/javascript"></script>
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+
+    <!-- LOADS FILE NAME IN PHOTO UPLOAD SECTION -->
+    @*<script>
+            $('#MKCimg').bind('change', function () {
+                var path = $(this).val(); //gets value of file
+                var fileName = path.replace(/^.*\\/, ''); //removes "fakepath" in Chrome
+                $('#img-selected').html(fileName);
+            })
+        </script>*@
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    @Scripts.Render("~/bundles/jqueryval")
 
 </body>
 </html>

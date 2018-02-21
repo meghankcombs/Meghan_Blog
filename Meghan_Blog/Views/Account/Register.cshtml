@@ -33,10 +33,19 @@
                         <div class="e-divider-2"></div>
                         <div id="form-messages"></div>
 
-                        <div class="field text-left">
+                        @*<div class="field text-left">
                             <label for="file" class="btn btn-btncolor btn-sm btn-file">
-                                Upload Photo<input type="file" name="UserPhoto" id="file" accept=".png,.jpg,.jpeg,.gif,.tif" style="display: none;"/>
+                                Upload Photo
+                                <input type="file" name="UserPhoto" id="file" accept=".png,.jpg,.jpeg,.gif,.tif" style="display: none;"/>
                             </label>
+                        </div>*@
+                        <div class="field text-left">
+                            <label for="MKCfile" class="btn btn-btncolor btn-sm btn-file">
+                                Upload Photo
+                                <input id="MKCfile" type="file" name="file" style="display: none;">
+                            </label>
+                            <div class="e-divider-1"></div>
+                            <div class="field" id="file-selected"></div>
                         </div>
                         <div class="e-divider-1"></div>
                         <div class="field">
@@ -86,3 +95,13 @@
 
     </div>
     <!-- /Content Sections -->
+
+@section scripts {
+    <script type="text/javascript">
+        $('#MKCfile').bind('change', function () {
+            var path = $(this).val(); //gets value of file
+            var fileName = path.replace(/^.*\\/, ''); //removes "fakepath" in Chrome
+            $('#file-selected').html(fileName);
+        })
+    </script>
+}

@@ -40,9 +40,8 @@
 
                                     @if (User.IsInRole("Admin"))
                                     {
-                                        <div class="e-divider-2"></div>
                                         <p><a href="@Url.Action("Edit", "BlogPosts", new { Id = Model.BlogPost.Id })" class="btn btn-small btn-rose-str">Edit Post</a></p>
-                                        <p><a href="@Url.Action("Delete", "BlogPosts", new { Id = Model.BlogPost.Id })" class="btn btn-small btn-rose-str">Delete Post</a></p>
+                                        <p class="btnmarginDetailsPg"><a href="@Url.Action("Delete", "BlogPosts", new { Id = Model.BlogPost.Id })" class="btn btn-small btn-rose-str">Delete Post</a></p>
                                     }
                                     
 
@@ -62,19 +61,19 @@
                                                             <div class="post-author">@comment.Author.FirstName @comment.Author.LastName</div>
                                                         </div>
                                                         <div class="comment">
-                                                            <p>@comment.Body</p>
+                                                            <p id="@string.Format("commentNum{0}", comment.Id)">@comment.Body</p>
                                                         </div>
 
                                                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                                                         {
                                                                 <p><a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" data-toggle="modal" data-target="#editModal" class="btn btn-small btn-rose-str">Edit</a></p>
-                                                                <p><a href="@Url.Action("Delete", "Comments", new { Id = comment.Id })" class="btn btn-small btn-rose-str">Delete</a></p>
+                                                                <p class="btnmarginDetailsPg"><a href="@Url.Action("Delete", "Comments", new { id = comment.Id })" class="btn btn-small btn-rose-str">Delete</a></p>
                                                         }
 
                                                         @if (User.Identity.IsAuthenticated && User.IsInRole("Moderator"))
                                                         {
                                                             <p><a href="@Url.Action("Edit", "Comments", new { id = comment.Id })" data-toggle="modal" data-target="#editModal" class="btn btn-small btn-rose-str">Edit</a></p>
-                                                            <p><a href="@Url.Action("Delete", "Comments", new { Id = comment.Id })" class="btn btn-small btn-rose-str">Delete</a></p>
+                                                            <p class="btnmarginDetailsPg"><a href="@Url.Action("Delete", "Comments", new { id = comment.Id })" class="btn btn-small btn-rose-str">Delete</a></p>
                                                         }
 
                                                         @if (!User.Identity.IsAuthenticated)
@@ -98,7 +97,7 @@
                                             @using(Html.BeginForm("Create", "Comments", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                                             {
                                                 @Html.AntiForgeryToken()
-
+                                                
                                                 @Html.Hidden("BlogPostId", Model.BlogPost.Id)
                                                 @Html.Hidden("slug", Model.BlogPost.Slug)
                                                 <div class="row">
@@ -130,18 +129,18 @@
                                     </div>
                                     <div class="modal-body">
                                         <!--Edit Comment-->
-                                        @using (Html.BeginForm("Edit", "Comments", FormMethod.Post))
+                                        @using (Html.BeginForm("Edit", "Comments", FormMethod.Post, new { id = "editCommentForm" }))
                                         {
                                         @Html.AntiForgeryToken()
                                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                        @Html.HiddenFor(model => model.ChangeableComments.Id)
-                                        @Html.HiddenFor(model => model.ChangeableComments.BlogPostId)
-                                        @Html.HiddenFor(model => model.ChangeableComments.AuthorId)
-                                        @Html.HiddenFor(model => model.ChangeableComments.Created)
+                                        @Html.HiddenFor(model => model.ChangeableComment.Id, new { @class = "passedInData", @name = "Id" })
+                                        @Html.HiddenFor(model => model.ChangeableComment.BlogPostId, new { @class = "passedInData", @name = "BlogPostId" })
+                                        @Html.HiddenFor(model => model.ChangeableComment.AuthorId, new { @class = "passedInData", @name = "AuthorId" })
+                                        @Html.HiddenFor(model => model.ChangeableComment.Created, new { @class = "passedInData", @name = "Created" })
+
                                         <div class="field row">
                                             <div class="col-md-12 editbody">
-                                                @Html.TextAreaFor(model => model.ChangeableComments.Body)
-                                                @Html.ValidationMessageFor(model => model.ChangeableComments.Body, "", new { @class = "text-danger" })
+                                                @Html.TextAreaFor(model => model.ChangeableComment.Body, new { @class = "passedInData", @name = "Body" })
                                             </div>
                                         </div>
                                         <div class="row">
@@ -226,6 +225,29 @@
 </div>
 <!-- /Wrapper -->
 
-@*COMMENT EDIT BUTTON TO FORMAT*@
+@section scripts {
+    <script>
+        $(function () {
+        $("#editCommentForm").submit(function (event) {
+            event.preventDefault();
+            var form = $(this);
+            var fdata = new FormData();
+            //grabs data by its name
+            $(".passedInData").each(function (x, y) {
+                fdata.append($(y).attr("name"), $(y).val());
+            });
+            //grabs antiforgerytoken
+            $("input[name='__RequestVerificationToken'").first().each(function (x, y) {
+                fdata.append($(y).attr("name"), $(y).val());
+            });
 
-@*@Html.ActionLink("Edit", "Edit", new { id = Model.BlogPost.Id })*@
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Edit", "Comments", null)",
+                data: fdata
+            });
+        });
+    });
+    </script>
+}
+

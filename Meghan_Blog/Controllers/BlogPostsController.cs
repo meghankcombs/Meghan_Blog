@@ -82,6 +82,8 @@ namespace Meghan_Blog.Controllers
             var customPostDetails = new CustomPostDetail();
 
             var oldestDate = DateTime.Now.AddDays(-10);
+            var blogId = db.BlogPosts.FirstOrDefault(b => b.Slug == slug).Id;
+            customPostDetails.ChangeableComment = db.Comments.FirstOrDefault(c => c.BlogPostId == blogId);
             customPostDetails.RecentPosts = db.BlogPosts.Where(b => b.Created >= oldestDate && b.Published).ToList();
             customPostDetails.BlogPost = db.BlogPosts.FirstOrDefault(p => p.Slug == slug);
             if (customPostDetails == null)
@@ -159,19 +161,19 @@ namespace Meghan_Blog.Controllers
         {
             if (ModelState.IsValid)
             {
-                var Slug = StringUtilities.URLFriendly(blogPost.Title);
-                if (String.IsNullOrWhiteSpace(Slug))
+                var slug = StringUtilities.URLFriendly(blogPost.Title);
+                if (String.IsNullOrWhiteSpace(slug))
                 {
                     ModelState.AddModelError("Title", "Invalid title");
                     return View(blogPost);
                 }
-                if (db.BlogPosts.Any(p => p.Slug == Slug && p.Id != blogPost.Id))
+                if (db.BlogPosts.Any(p => p.Slug == slug && p.Id != blogPost.Id))
                 {
                     ModelState.AddModelError("Title", "The title must be unique");
                     return View(blogPost);
                 }
 
-                blogPost.Slug = Slug;
+                blogPost.Slug = slug;
                 
                 if (ImageUploadValidator.IsWebFriendlyImage(file))
                 {

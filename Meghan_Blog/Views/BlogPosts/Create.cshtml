@@ -32,11 +32,13 @@
                         @using (Html.BeginForm("Create", "BlogPosts", FormMethod.Post, new { id = "ajax-contact", @class = "wpcf7-form", enctype = "Multipart/form-data" }))
                         {
                             @Html.AntiForgeryToken()
-
                             <div class="field text-left">
-                                <label for="file" class="btn btn-btncolor btn-sm btn-file">
-                                    Upload Photo<input id="file" type="file" name="file" style="display: none;">
+                                <label for="MKCfile" class="btn btn-btncolor btn-sm btn-file">
+                                    Upload Photo
+                                    <input id="MKCfile" type="file" name="file" style="display: none;">
                                 </label>
+                                <div class="e-divider-1"></div>
+                                <div class="field" id="file-selected"></div>
                             </div>
                             <div class="e-divider-1"></div>
                             <div class="field">
@@ -85,5 +87,11 @@
                 selector: "#Body"
             });
         });
+
+        $('#MKCfile').bind('change', function () {
+            var path = $(this).val(); //gets value of file
+            var fileName = path.replace(/^.*\\/, ''); //removes "fakepath" in Chrome
+            $('#file-selected').html(fileName);
+        })
     </script>
 }

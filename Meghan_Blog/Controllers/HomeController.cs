@@ -8,6 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 using Meghan_Blog.Models;
 using Meghan_Blog.ViewModels;
+using System.Threading.Tasks;
+using System.Text;
+using System.Net.Mail;
+using System.Configuration;
 
 namespace Meghan_Blog.Controllers
 {
@@ -37,10 +41,44 @@ namespace Meghan_Blog.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Contact(EmailModel model)
+        {
+            var emailBody = new StringBuilder();
+            emailBody.AppendLine(model.Body);
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var body = "<p>Email from: <strong>{0} </strong>({1})</p><p>Message:</p><p>{2}</p>";
+                    var from = "Blog<meghankcombs@gmail.com>";
+                    model.Body = emailBody.ToString();
+
+                    var email = new MailMessage(from, ConfigurationManager.AppSettings["emailto"])
+                    {
+                        Subject = "Message from Blog",
+                        Body = string.Format(body, model.FromName, model.FromEmail, model.Body),
+                        IsBodyHtml = true
+                    };
+                    var svc = new PersonalEmail();
+                    await svc.SendAsync(email);
+                    TempData["BlogMessage"] = "Your message has been sent!";
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    await Task.FromResult(0);
+                }
+            }
+            return View(model);
+        }
+
         public FileContentResult UserPhotos()
         {
             if (User.Identity.IsAuthenticated)
