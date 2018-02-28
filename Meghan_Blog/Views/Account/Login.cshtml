@@ -2,10 +2,6 @@
 @using Meghan_Blog.ViewModels
 @model LoginViewModel
 
-<!-- Content Sections -->
-<div id="content">
-    <div class="e-divider-2"></div>
-
     <!-- Login Header -->
     <section id="articles" class="text-center">
         <div class="container">
@@ -13,6 +9,9 @@
                 <article id="01" class="page-block col-md-12 page hentry">
                     <div class="page-detail text-center">
                         <h2 class="entry-title page-title">Login Here</h2>
+                        <div class="metas">
+                            <a href="@Url.Action("ForgotPassword", "Account")" class="meta-date">Forgot Password?</a>
+                        </div>
                     </div>
                     <div class="text-center"><div class="ornament-divider-fullwidth"><i class="flaticon-art-3"></i></div></div>
                     <div class="e-divider-2"></div>
@@ -67,9 +66,4 @@
     <!-- /Login -->
 
     <div class="text-center"><div class="ornament-divider-fullwidth"><i class="flaticon-art-3"></i></div></div>
-    <div class="e-divider-4">
-    </div>
-
-</div>
-
-<!-- /Content Sections -->
+    <div class="e-divider-4"></div>

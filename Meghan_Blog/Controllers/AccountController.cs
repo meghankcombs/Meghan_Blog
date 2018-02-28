@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using Meghan_Blog.Models;
 using System.IO;
 using System.Collections.Generic;
+using System.Net.Mail;
 
 namespace Meghan_Blog.Controllers
 {
@@ -21,6 +22,7 @@ namespace Meghan_Blog.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        //DO NOT DELETE YOU NEED THIS
         public AccountController()
         {
         }
@@ -154,7 +156,6 @@ namespace Meghan_Blog.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 // To convert the user uploaded Photo as Byte Array before save to DB 
                 byte[] imageData = null;
                 if (Request.Files.Count > 0)
@@ -166,26 +167,25 @@ namespace Meghan_Blog.Controllers
                         imageData = binary.ReadBytes(PostedImageFile.ContentLength);
                     }
                 }
-
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName,
                     LastName = model.LastName, DisplayName = model.DisplayName };
-
                 //Here we pass the byte array to user context to store in db 
                 user.UserPhoto = imageData;
-
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771              
+                    //COMMENTING OUT FOR PASSWORD RECOVERY
+                    //string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Home");
                 }
-
                 AddErrors(result);
             }
-
             // If we got this far, something failed, redisplay form 
             return View(model);
         }
@@ -255,7 +255,7 @@ namespace Meghan_Blog.Controllers
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                if (user == null)
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
@@ -263,10 +263,25 @@ namespace Meghan_Blog.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                 // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+
+                var from = "Blog<meghankcombs@gmail.com>";
+                var email = new MailMessage(from, model.Email)
+                {
+                    Subject = "Reset Password",
+                    Body = "Please reset your password by clicking <a href =\"" + callbackUrl + "\">here</a>",
+                    IsBodyHtml = true
+                };
+
+                var svc = new PersonalEmail();
+                await svc.SendAsync(email);
+
+                //await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                TempData["MessageForgot"] = "Please check your email to reset your password.";
+                return RedirectToAction("Index", "Home");
             }
 
             // If we got this far, something failed, redisplay form
@@ -304,12 +319,14 @@ namespace Meghan_Blog.Controllers
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                TempData["ErrorMsg"] = "Something went wrong.";
+                return RedirectToAction("Index", "Home");
             }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                TempData["ResetMsg"] = "Your password has been reset!";
+                return RedirectToAction("Index", "Home");
             }
             AddErrors(result);
             return View();
@@ -435,6 +452,34 @@ namespace Meghan_Blog.Controllers
 
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult ResendEmailConfirmation() {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResendEmailConfirmation(ForgotPasswordViewModel model)
+        {
+            var user = await UserManager.FindByNameAsync(model.Email);
+
+            if(user != null)
+            {
+                string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ConfirmEmail", "Account", 
+                    new { userId = user.Id, code = code}, protocol: Request.Url.Scheme);
+                await UserManager.SendEmailAsync(user.Id, "Confirm your account",
+                    "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+            }
+            return RedirectToAction("ConfirmationSent");
+        }
+
+        public ActionResult ConfirmationSent()
+        {
+            return View();
         }
 
         //

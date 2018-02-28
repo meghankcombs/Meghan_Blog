@@ -1,8 +1,6 @@
 ﻿@using Meghan_Blog.ViewModels
 @model Meghan_Blog.Models.RegisterViewModel
 
-<!-- Content Sections -->
-<div id="content">
     <div class="e-divider-2"></div>
 
     <!-- Register Header -->
@@ -31,8 +29,6 @@
                     @Html.AntiForgeryToken()
                     <div class="col-md-12 e-centered">
                         <div class="e-divider-2"></div>
-                        <div id="form-messages"></div>
-
                         @*<div class="field text-left">
                             <label for="file" class="btn btn-btncolor btn-sm btn-file">
                                 Upload Photo
@@ -42,7 +38,7 @@
                         <div class="field text-left">
                             <label for="MKCfile" class="btn btn-btncolor btn-sm btn-file">
                                 Upload Photo
-                                <input id="MKCfile" type="file" name="file" style="display: none;">
+                                <input type="file" name="UserPhoto" id="MKCfile" accept=".png,.jpg,.jpeg,.gif,.tif" style="display: none;">
                             </label>
                             <div class="e-divider-1"></div>
                             <div class="field" id="file-selected"></div>
@@ -92,9 +88,6 @@
         <div class="e-divider-6"></div>
         <div class="text-center"><div class="ornament-divider-fullwidth"><i class="flaticon-art-3"></i></div></div>
         <div class="e-divider-4"></div>
-
-    </div>
-    <!-- /Content Sections -->
 
 @section scripts {
     <script type="text/javascript">
