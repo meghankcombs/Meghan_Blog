@@ -63,7 +63,7 @@
                     <aside id="resent-widget" class="widget widget_recent_post">
                         <div class="title widget-title lined">Recent Posts</div>
                         <div>
-                            @foreach (var recpost in Model.LatestPosts)
+                            @foreach (var recpost in Model.LatestPosts.OrderByDescending(b => b.Created))
                             {
                                 <div class="media">
                                     <div class="media-left"><a href="@Url.Action("Details", "BlogPosts", new { slug = recpost.Slug})"><img class="media-object recpostheight" src="@Url.Content(recpost.MediaUrl)"></a></div>

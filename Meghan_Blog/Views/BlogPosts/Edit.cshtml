@@ -95,11 +95,7 @@
 
 @section scripts {
     <script type="text/javascript">
-        $(function () {
-            tinymce.init({
-                selector: "#Body"
-            });
-        });
+        CKEDITOR.replace('Body');
 
         $('#MKCfile').bind('change', function () {
             var path = $(this).val(); //gets value of file
