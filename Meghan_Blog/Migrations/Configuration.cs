@@ -61,7 +61,7 @@ namespace Meghan_Blog.Migrations
                     LastName = "Combs",
                     DisplayName = "MCDev",
                     UserPhoto = new byte[0]
-                }, "Boo&Grace22");
+                }, "Pa$$word");
             }
 
             var userId = userManager.FindByEmail("meghankcombs@gmail.com").Id;
@@ -78,7 +78,7 @@ namespace Meghan_Blog.Migrations
                     LastName = "Dernbach",
                     DisplayName = "CAD",
                     UserPhoto = new byte[0]
-                }, "Boo&Grace22");
+                }, "Pa$$word");
             }
 
             var userId2 = userManager.FindByEmail("cadinnc@gmail.com").Id;

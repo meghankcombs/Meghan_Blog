@@ -552,10 +552,13 @@
     <Content Include="images\Sunflower seed loaf.png" />
     <Content Include="images\tech.jpg" />
     <Content Include="MyImages\3.jpg" />
+    <Content Include="MyImages\Blog2.jpeg" />
+    <Content Include="MyImages\Computer coding.jpeg" />
     <Content Include="MyImages\Computer on desk coding.jpeg" />
     <Content Include="MyImages\Financial Portal on computer.jpg" />
     <Content Include="MyImages\Notebook and Computer.jpeg" />
     <Content Include="MyImages\Notebooks and Coffee.jpeg" />
+    <Content Include="MyImages\Steve%27s Hair.jpg" />
     <Content Include="MyImages\user_default.png" />
     <Content Include="MyImages\Woman on Bed Typing.jpg" />
     <Content Include="MyImages\Woman on computer.jpeg" />
@@ -933,6 +936,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="private.config" />
     <Content Include="Scripts\ckeditor\ckeditor.pack" />
+    <None Include="Properties\PublishProfiles\mcombs-mvcblog - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1006,7 +1010,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Views\Comments\Edit.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
