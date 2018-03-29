@@ -936,6 +936,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="private.config" />
     <Content Include="Scripts\ckeditor\ckeditor.pack" />
+    <None Include="Properties\PublishProfiles\mcombs-mvcblog - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mcombs-mvcblog - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -978,8 +979,6 @@
     <Content Include="assets\vendor\owl-carousel\README.md" />
     <Content Include="images\Products\Thumbs.db" />
     <Content Include="Documentation\Documentation-AppUser.docx" />
-    <None Include="Properties\PublishProfiles\mcombs-blog - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\mcombs-blog - Web Deploy.pubxml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Scripts\popper-utils.js" />

@@ -39,16 +39,16 @@
                     </div>
                     <div class="e-divider-1"></div>
                     <div class="field">
-                        <input type="text" name="Title" maxlength="20" placeholder="Blog Title" required>
+                        <input type="text" name="Title" maxlength="200" placeholder="Blog Title" required>
                     </div>
                     <div class="e-divider-1"></div>
                     <div class="field">
-                        <textarea name="Abstract" placeholder="Abstract" rows="3" cols="30" maxlength="300" required></textarea>
+                        <textarea name="Abstract" placeholder="Abstract" rows="3" cols="30" maxlength="500" required></textarea>
                     </div>
                     <div class="e-divider-1"></div>
                     <div class="field">
                         @*<textarea name="Body" id="Body" placeholder="Write post" rows="15" cols="30" maxlength="3000"></textarea>*@
-                        @Html.TextAreaFor(model => model.Body, new { placeholder = "Write post", rows = "15", cols = "30", maxlength = "3000" })
+                        @Html.TextAreaFor(model => model.Body, new { placeholder = "Write post", rows = "15", cols = "30", maxlength = "7000" })
                     </div>
                     <div class="e-divider-1"></div>
                     <div class="e-divider-2"></div>
